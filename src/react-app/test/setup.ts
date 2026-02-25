@@ -7,5 +7,6 @@ class MockIntersectionObserver implements IntersectionObserver {
   observe = () => {};
   disconnect = () => {};
   unobserve = () => {};
+  takeRecords = (): IntersectionObserverEntry[] => [];
 }
 globalThis.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;

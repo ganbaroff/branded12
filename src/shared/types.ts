@@ -15,7 +15,8 @@
 export interface Env {
   /** D1 database (optional when using Supabase via SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY) */
   DB?: D1Database;
-  R2_BUCKET: R2Bucket;
+  /** R2 bucket (optional; enable R2 in Cloudflare Dashboard to use) */
+  R2_BUCKET?: R2Bucket;
   /** Admin panel password (local auth). Set via wrangler secret / .dev.vars */
   ADMIN_PASSWORD?: string;
   /** Optional secret for signing session cookie; if unset, ADMIN_PASSWORD is used */
