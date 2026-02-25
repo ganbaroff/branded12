@@ -33,34 +33,42 @@ async function getCachedData<T>(
   return data;
 }
 
-// Get all services (public) - cached
+// Get all services (public) - cached; returns [] if DB not ready (e.g. migrations not run)
 app.get("/api/services", async (c) => {
   const cache = caches.default;
   const cacheKey = new Request(`${c.req.url}`, c.req);
 
-  const results = await getCachedData(
-    cache,
-    cacheKey,
-    async () => getDb(c.env).getServices(),
-    c.executionCtx
-  );
-
-  return c.json(results);
+  try {
+    const results = await getCachedData(
+      cache,
+      cacheKey,
+      async () => getDb(c.env).getServices(),
+      c.executionCtx
+    );
+    return c.json(results);
+  } catch (e) {
+    console.error("/api/services error:", e);
+    return c.json([]);
+  }
 });
 
-// Get all pricing packages (public) - cached
+// Get all pricing packages (public) - cached; returns [] if DB not ready (e.g. migrations not run)
 app.get("/api/packages", async (c) => {
   const cache = caches.default;
   const cacheKey = new Request(`${c.req.url}`, c.req);
 
-  const results = await getCachedData(
-    cache,
-    cacheKey,
-    async () => getDb(c.env).getPackages(),
-    c.executionCtx
-  );
-
-  return c.json(results);
+  try {
+    const results = await getCachedData(
+      cache,
+      cacheKey,
+      async () => getDb(c.env).getPackages(),
+      c.executionCtx
+    );
+    return c.json(results);
+  } catch (e) {
+    console.error("/api/packages error:", e);
+    return c.json([]);
+  }
 });
 
 export default app;
