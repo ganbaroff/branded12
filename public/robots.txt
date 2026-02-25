@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://b2brand.az/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin
+Disallow: /auth/
+
+# Crawl-delay
+Crawl-delay: 1

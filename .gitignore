@@ -1,0 +1,10 @@
+dist/
+node_modules/
+.wrangler/
+.dev.vars
+.env
+.env.local
+.env.*.local
+# .dev.vars — вернуть перед деплоем, чтобы не коммитить секреты
+# .dev.vars
+worker-configuration.d.ts
